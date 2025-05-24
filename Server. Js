@@ -1,0 +1,94 @@
+<script>
+  // Handle verification
+  document.getElementById("verifyForm").addEventListener("submit", function(e)
+{
+    e.preventDefault();
+    const id = document.getElementById("staffId").value;
+    const name = document.getElementById("staffName").value;
+    // Placeholder: Replace this with actual fetch call
+    if(id === "123" && name.toLowerCase() === "raj") {
+      document.getElementById("result").innerText = "Verification Successful!";
+      document.getElementById("result").style.color = "green";
+    } 
+
+    else if(id === "456" && name.toLowerCase() === "ram") {
+      document.getElementById("result").innerText = "Verification Successful!";
+      document.getElementById("result").style.color = "green";
+    }
+
+    else if(id === "789" && name.toLowerCase() === "dhiraj") {
+      document.getElementById("result").innerText = "Verification Successful!";
+      document.getElementById("result").style.color = "green";
+
+    }
+
+    else if(id === "012" && name.toLowerCase() === "mahesh") {
+      document.getElementById("result").innerText = "Verification Successful!";
+      document.getElementById("result").style.color = "green";
+    }
+    else if(id === "345" && name.toLowerCase() === "pravin") {
+      document.getElementById("result").innerText = "Verification Successful!";
+      document.getElementById("result").style.color = "green";
+    }
+
+    else if(id === "143" && name.toLowerCase() === "akash") {
+      document.getElementById("result").innerText = "Verification Successful!";
+      document.getElementById("result").style.color = "green";
+    }
+
+    else {
+
+      document.getElementById("result").innerText = "ID not found!";
+      document.getElementById("result").style.color = "red";
+
+    }
+
+    fetch("/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, name })
+
+    })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("result").innerText = data.message;
+      document.getElementById("result").style.color = data.success ? "green" : "red";
+    });
+
+  });
+  // Toggle New ID form
+  function toggleNewIdForm() {
+    const form = document.getElementById("newIdForm");
+    form.style.display = form.style.display === "none" ? "block" : "none";
+
+  }
+  // Handle saving new ID
+  function saveNewId() 
+{
+    const id = document.getElementById("newId").value;
+    const name = document.getElementById("newName").value;
+    if(id === "123" && name.toLowerCase() === "raj") {
+      document.getElementById("result").innerText = "Save Successful!";
+      document.getElementById("result").style.color = "green";
+    } 
+    if (!id || !name) 
+{
+      alert("Please fill both ID and Name");
+      return;
+
+    }
+    fetch("/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, name })
+
+    })
+
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      document.getElementById("newId").value = "";
+      document.getElementById("newName").value = "";
+    });
+  }
+</script>
