@@ -1,0 +1,9 @@
+staff-id-verification/
+│
+├── public/
+│   └── index.html         <-- Your HTML file
+│
+├── server.js              <-- Your backend server (Express)
+├── package.json           <-- Node dependencies
+├── .gitignore             <-- Optional: Ignore node_modules etc.
+└── README.md              <-- Project description
